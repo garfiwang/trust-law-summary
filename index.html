@@ -19,15 +19,100 @@
       --crimson:     #CF202E; /* 緋紅 */
     }
 
-    /* 投影片基礎設定 */
-    .reveal {
-      font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-      color: var(--brown);
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
       background: var(--cream);
     }
-    
-    .reveal-viewport {
-      background: var(--cream) !important;
+
+    /* 版面整體配置：左側目錄欄，右側簡報區 */
+    .app-container {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+    }
+
+    /* 左側索引欄 */
+    .sidebar {
+      width: 300px;
+      min-width: 300px;
+      height: 100%;
+      background: var(--brown);
+      border-right: 4px solid var(--gold-deep);
+      box-sizing: border-box;
+      padding: 25px 15px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sidebar-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--gold);
+      border-bottom: 2px solid rgba(201, 162, 39, 0.4);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-chapter {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--brown-light);
+      margin-top: 18px;
+      margin-bottom: 8px;
+      padding-left: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-left: 3px solid var(--brown-light);
+    }
+
+    .menu-item {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 15px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: rgba(249, 245, 240, 0.85);
+      transition: all 0.2s ease;
+      margin-bottom: 4px;
+      text-align: left;
+    }
+
+    .menu-item:hover {
+      background: rgba(164, 117, 81, 0.2);
+      color: #FFF;
+    }
+
+    .menu-item.active {
+      background: var(--gold-deep);
+      color: var(--brown) !important;
+      font-weight: 800;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 右側簡報區域 */
+    .presentation-container {
+      flex-grow: 1;
+      height: 100%;
+      position: relative;
+      background: var(--cream);
+    }
+
+    .reveal {
+      width: 100%;
+      height: 100% !important;
     }
 
     .reveal h1, .reveal h2, .reveal h3 {
@@ -67,16 +152,16 @@
       margin-bottom: 12px;
     }
 
-    /* 全局固定 Slogan 頁尾 */
+    /* 全局固定 Slogan 頁尾 (調整定位與寬度以適應嵌入式版面) */
     .global-footer {
-      position: fixed;
+      position: absolute;
       bottom: 25px;
       left: 60px;
       right: 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
+      z-index: 99;
       border-top: 2px solid rgba(164, 117, 81, 0.25);
       padding-top: 15px;
       pointer-events: none;
@@ -225,14 +310,25 @@
 </head>
 <body>
 
-  <!-- 全局固定頁尾 Slogan -->
-  <div class="global-footer">
-    <div class="footer-slogan">信託不會改變你的生活，信託可以確保未來你的生活不會被改變</div>
-    <div class="footer-brand">問大師家族辦公室</div>
-  </div>
+  <div class="app-container">
+    <!-- 左側目錄索引欄 -->
+    <div class="sidebar">
+      <div class="sidebar-title">信託法規目錄</div>
+      <div class="sidebar-menu">
+        <div class="menu-item active" data-index="0">封面</div><div class="menu-chapter">信託的定義</div><div class="menu-item" data-index="1">信託的定義</div><div class="menu-chapter">第一章 總則</div><div class="menu-item" data-index="2">第一條-第二條</div><div class="menu-item" data-index="3">第三條</div><div class="menu-item" data-index="4">第四條</div><div class="menu-item" data-index="5">第五條</div><div class="menu-item" data-index="6">第六條</div><div class="menu-item" data-index="7">第七條-第八條</div><div class="menu-chapter">第二章 信託財產</div><div class="menu-item" data-index="8">第九條-第十一條</div><div class="menu-item" data-index="9">第十二條</div><div class="menu-item" data-index="10">第十三條-第十四條</div><div class="menu-item" data-index="11">第十五條-第十六條</div><div class="menu-chapter">第三章 受益人</div><div class="menu-item" data-index="12">第十七條</div><div class="menu-item" data-index="13">第十八條</div><div class="menu-item" data-index="14">第十九條-第二十條</div><div class="menu-chapter">第四章 受託人</div><div class="menu-item" data-index="15">第二十一條-第二十二條</div><div class="menu-item" data-index="16">第二十三條</div><div class="menu-item" data-index="17">第二十四條</div><div class="menu-item" data-index="18">第二十五條-第二十七條</div><div class="menu-item" data-index="19">第二十八條</div><div class="menu-item" data-index="20">第二十九條-第三十條</div><div class="menu-item" data-index="21">第三十一條-第三十二條</div><div class="menu-item" data-index="22">第三十三條-第三十四條</div><div class="menu-item" data-index="23">第三十五條</div><div class="menu-item" data-index="24">第三十六條</div><div class="menu-item" data-index="25">第三十七條-第三十八條</div><div class="menu-item" data-index="26">第三十九條</div><div class="menu-item" data-index="27">第四十條</div><div class="menu-item" data-index="28">第四十一條-第四十二條</div><div class="menu-item" data-index="29">第四十三條-第四十四條</div><div class="menu-item" data-index="30">第四十五條</div><div class="menu-item" data-index="31">第四十六條-第四十七條</div><div class="menu-item" data-index="32">第四十八條</div><div class="menu-item" data-index="33">第四九條-第五十條</div><div class="menu-item" data-index="34">第四十九條-第五十條</div><div class="menu-item" data-index="35">第五十一條</div><div class="menu-chapter">第五章 信託監察人</div><div class="menu-item" data-index="36">第五十二條</div><div class="menu-item" data-index="37">第五十三條-第五十五條</div><div class="menu-item" data-index="38">第五十六條-第五十八條</div><div class="menu-item" data-index="39">第五十九條</div><div class="menu-chapter">第六章 信託之監督</div><div class="menu-item" data-index="40">第六十條-第六十一條</div><div class="menu-chapter">第七章 信託關係之消滅</div><div class="menu-item" data-index="41">第六十二條-第六十三條</div><div class="menu-item" data-index="42">第六十四條</div><div class="menu-item" data-index="43">第六十五條</div><div class="menu-item" data-index="44">第六十六條-第六十七條</div><div class="menu-item" data-index="45">第六十八條</div>
+      </div>
+    </div>
 
-  <div class="reveal">
-    <div class="slides">
+    <!-- 右側投影片展示區 -->
+    <div class="presentation-container">
+      <!-- 全局固定頁尾 Slogan -->
+      <div class="global-footer">
+        <div class="footer-slogan">信託不會改變你的生活，信託可以確保未來你的生活不會被改變</div>
+        <div class="footer-brand">問大師家族辦公室</div>
+      </div>
+
+      <div class="reveal">
+        <div class="slides">
 
       <!-- Slide 1: 封面 -->
       <section>
@@ -723,25 +819,7 @@
         </div>
       </section>
     
-      <!-- Slide 30: 第四章 受託人 · 第四操作-第四四條 -->
-      <section>
-        <div class="slide-container">
-          <div class="kicker">第四章 受託人</div>
-          <h2>第四操作-第四四條</h2>
-          <div class="content-wrapper">
-            <div class="text-card">
-              <h3>第四十三條</h3>
-          <p>第三十九條第一項、第三項，第四十條及第四十一條之規定，於受託人得自信託財產收取報酬時，準用之。</p>
-          <p>第四十一條規定，於受託人得向受益人請求報酬時，準用之。</p>
-          <hr style='border: 0; border-top: 2px dashed rgba(164, 117, 81, 0.2); margin: 20px 0;'>
-          <h3>第四十四條</h3>
-          <p>前五條所定受託人之權利，受託人非履行第二十三條或第二十四條第三項所定損害賠償、回復原狀或返還利益之義務，不得行使。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    
-      <!-- Slide 31: 第四章 受託人 · 第四十三條-第四十四條 -->
+      <!-- Slide 30: 第四章 受託人 · 第四十三條-第四十四條 -->
       <section>
         <div class="slide-container">
           <div class="kicker">第四章 受託人</div>
@@ -759,11 +837,11 @@
         </div>
       </section>
     
-      <!-- Slide 32: 第四章 受託人 · 第四五條 -->
+      <!-- Slide 31: 第四章 受託人 · 第四十五條 -->
       <section>
         <div class="slide-container">
           <div class="kicker">第四章 受託人</div>
-          <h2>第四五條</h2>
+          <h2>第四十五條</h2>
           <div class="content-wrapper">
             <div class="text-card">
               <h3>第四十五條</h3>
@@ -775,7 +853,7 @@
         </div>
       </section>
     
-      <!-- Slide 33: 第四章 受託人 · 第四十六條-第四十七條 -->
+      <!-- Slide 32: 第四章 受託人 · 第四十六條-第四十七條 -->
       <section>
         <div class="slide-container">
           <div class="kicker">第四章 受託人</div>
@@ -793,7 +871,7 @@
         </div>
       </section>
     
-      <!-- Slide 34: 第四章 受託人 · 第四十八條 -->
+      <!-- Slide 33: 第四章 受託人 · 第四十八條 -->
       <section>
         <div class="slide-container">
           <div class="kicker">第四章 受託人</div>
@@ -805,6 +883,20 @@
           <p>前項情形，原受託人因處理信託事務負擔之債務，債權人亦得於新受託人繼受之信託財產限度內，請求新受託人履行。</p>
           <p>新受託人對原受託人得行使第二十三條及第二十四條第三項所定之權利。</p>
           <p>第一項之規定，於前條第二項之情形，準用之。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Slide 34: 第四章 受託人 · 第四九條-第五十條 -->
+      <section>
+        <div class="slide-container">
+          <div class="kicker">第四章 受託人</div>
+          <h2>第四九條-第五十條</h2>
+          <div class="content-wrapper">
+            <div class="text-card">
+              <h3>第五十條</h3>
+          <p>受託人變更時，原受託人應就信託事務之處理作成結算書及報告書，連同信託財產會同受益人或信託監察人移交於新受託人。</p>
             </div>
           </div>
         </div>
@@ -1012,6 +1104,8 @@
         </div>
       </section>
     
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1019,7 +1113,9 @@
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/search/search.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/zoom/zoom.js"></script>
   <script>
+    // 初始化 Reveal.js，開啟 embedded 模式以適應右側區塊
     Reveal.initialize({
+      embedded: true,
       hash: true,
       transition: 'slide',
       transitionSpeed: 'default',
@@ -1028,12 +1124,44 @@
       progress: true,
       controls: true,
       slideNumber: 'c/t',
-      width: 1100,
+      width: 1000, // 略微調小寬度以配合左側欄佔用的空間
       height: 700,
-      margin: 0.1,
-      minScale: 0.8,
+      margin: 0.08,
+      minScale: 0.7,
       maxScale: 1.5,
       plugins: [ RevealSearch, RevealZoom ]
+    });
+
+    // 點擊左側目錄項目跳轉至對應投影片
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const index = parseInt(item.getAttribute('data-index'));
+        Reveal.slide(index);
+      });
+    });
+
+    // 當投影片切換時，自動同步更新左側選單的 Active 狀態與自動滾動
+    Reveal.on('slidechanged', event => {
+      updateActiveMenuItem(event.indexh);
+    });
+
+    function updateActiveMenuItem(index) {
+      const items = document.querySelectorAll('.menu-item');
+      items.forEach(item => {
+        const idx = parseInt(item.getAttribute('data-index'));
+        if (idx === index) {
+          item.classList.add('active');
+          // 將當前項目平滑滾動至可見區域
+          item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // 當 Reveal.js 載入完成時初始化狀態
+    Reveal.on('ready', event => {
+      updateActiveMenuItem(event.indexh);
     });
   </script>
 </body>
